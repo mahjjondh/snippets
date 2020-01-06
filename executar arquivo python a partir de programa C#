@@ -1,0 +1,30 @@
+private void button2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text += "Atualizando" + System.Environment.NewLine;
+            
+            string arg = string.Format(@"massa_fato.py"); // argumento para passar para o comando python
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo(@"C:\\Users\\########\\Downloads\\w37\\WPy64-3740\\python-3.7.4.amd64\\python.exe", arg);
+            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.CreateNoWindow = true; // esconder a linha de comando
+            p.StartInfo.RedirectStandardOutput = false;
+            p.StartInfo.RedirectStandardError = false;
+            Process processChild = Process.Start(p.StartInfo);
+            textBox2.Text += "Criando tabela fato e dimensões temporarias..." + System.Environment.NewLine;
+            processChild.WaitForExit();
+            textBox2.Text += "Criadas tabela fato e dimensões temporarias..." + System.Environment.NewLine;
+
+            textBox2.Text += "Criando dimensões do modelo..." + System.Environment.NewLine;
+            string arg1 = string.Format(@"dim_fato.py"); 
+            Process p1 = new Process();
+            p1.StartInfo = new ProcessStartInfo(@"C:\\Users\\########\\Downloads\\w37\\WPy64-3740\\python-3.7.4.amd64\\python.exe", arg1);
+            p1.StartInfo.UseShellExecute = true;
+            p1.StartInfo.CreateNoWindow = true; 
+            p1.StartInfo.RedirectStandardOutput = false;
+            p1.StartInfo.RedirectStandardError = false;
+            Process processChild1 = Process.Start(p1.StartInfo);
+            processChild1.WaitForExit();
+            textBox2.Text += "Criadas dimensões do modelo..." + System.Environment.NewLine;
+            textBox2.Text += "Massa de Dados Atualizada";
+
+        }
