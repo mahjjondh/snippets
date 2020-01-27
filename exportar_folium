@@ -1,0 +1,8 @@
+def export_map(map_file, map_image, map_obj):
+    browser = webdriver.Chrome('chromedriver.exe')
+    tmpURL = 'file://{path}/{mapfile}'.format(path=os.getcwd(), mapfile=map_file)
+    map_obj.save(map_file)
+    browser.get(tmpURL)
+    time.sleep(5)
+    browser.save_screenshot(map_image)
+    browser.quit()
